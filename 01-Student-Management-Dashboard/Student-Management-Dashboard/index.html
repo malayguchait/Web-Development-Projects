@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Management Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Student Management Dashboard</h1>
+
+        <!-- Student Form -->
+        <div class="form-container">
+
+            <h2>Add Student</h2>
+
+            <form id="studentForm">
+
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Student Name"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="studentRoll"
+                    placeholder="Roll Number"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="studentCourse"
+                    placeholder="Course"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="studentMarks"
+                    placeholder="Marks"
+                    required
+                >
+
+                <button type="submit" id="submitButton">
+                    Add Student
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="controls">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search student..."
+            >
+
+            <select id="courseFilter">
+
+                <option value="all">All Courses</option>
+
+                <option value="ECE">ECE</option>
+
+                <option value="CSE">CSE</option>
+
+                <option value="EEE">EEE</option>
+
+                <option value="ME">ME</option>
+
+            </select>
+
+        </div>
+
+        <!-- Student Table -->
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Roll Number</th>
+                        <th>Course</th>
+                        <th>Marks</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="studentTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

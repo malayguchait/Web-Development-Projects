@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskFlow - Chat To-Do App</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">✓</div>
+                <div>
+                    <h2>TaskFlow</h2>
+                    <span>Personal Assistant</span>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+
+                <button class="menu-item active" onclick="showAllTasks()">
+                    <span>📋</span>
+                    <span>All Tasks</span>
+                    <strong id="allCount">0</strong>
+                </button>
+
+                <button class="menu-item" onclick="showPendingTasks()">
+                    <span>⏳</span>
+                    <span>Pending</span>
+                    <strong id="pendingCount">0</strong>
+                </button>
+
+                <button class="menu-item" onclick="showCompletedTasks()">
+                    <span>✅</span>
+                    <span>Completed</span>
+                    <strong id="completedCount">0</strong>
+                </button>
+
+            </div>
+
+            <div class="sidebar-bottom">
+
+                <button class="menu-item" onclick="toggleTheme()">
+                    <span id="themeIcon">🌙</span>
+                    <span>Dark Mode</span>
+                </button>
+
+                <button class="menu-item danger" onclick="clearAllTasks()">
+                    <span>🗑️</span>
+                    <span>Clear All</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN AREA -->
+        <main class="main-content">
+
+            <!-- HEADER -->
+            <header class="top-bar">
+
+                <div>
+                    <h1 id="pageTitle">My Tasks</h1>
+                    <p id="dateText"></p>
+                </div>
+
+                <div class="header-actions">
+
+                    <div class="search-box">
+                        <span>🔍</span>
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search tasks..."
+                            oninput="searchTasks()"
+                        >
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- STATISTICS -->
+            <section class="stats">
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">📋</div>
+
+                    <div>
+                        <span>Total Tasks</span>
+                        <h2 id="totalTasks">0</h2>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">⏳</div>
+
+                    <div>
+                        <span>Pending</span>
+                        <h2 id="pendingTasks">0</h2>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon green">✅</div>
+
+                    <div>
+                        <span>Completed</span>
+                        <h2 id="completedTasks">0</h2>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- CHAT / TASK AREA -->
+            <section class="chat-container">
+
+                <div class="chat-header">
+
+                    <div class="assistant-avatar">
+                        🤖
+                    </div>
+
+                    <div>
+                        <h3>Task Assistant</h3>
+                        <span>
+                            <span class="online-dot"></span>
+                            Online
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="task-area" id="taskArea">
+
+                    <!-- Tasks will appear here -->
+
+                </div>
+
+
+                <!-- EMPTY STATE -->
+                <div class="empty-state" id="emptyState">
+
+                    <div class="empty-icon">
+                        📝
+                    </div>
+
+                    <h2>No tasks yet</h2>
+
+                    <p>
+                        Start by adding your first task below.
+                    </p>
+
+                </div>
+
+
+                <!-- INPUT -->
+                <div class="input-area">
+
+                    <button
+                        class="attach-button"
+                        onclick="showInfo()"
+                        title="Information"
+                    >
+                        ＋
+                    </button>
+
+                    <input
+                        type="text"
+                        id="taskInput"
+                        placeholder="Type a task or message..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        class="send-button"
+                        onclick="addTask()"
+                    >
+                        ➤
+                    </button>
+
+                </div>
+
+                <div class="input-hint">
+                    Press <b>Enter</b> to add a task
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer>
+
+                <span>TaskFlow © 2026</span>
+
+                <span>
+                    Your tasks are stored locally on this device 🔒
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <div class="toast" id="toast">
+        Task added successfully!
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ShopEasy | Mini Amazon</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <a href="index.html" class="logo">
+            ShopEasy
+        </a>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search products, brands and categories..."
+            >
+
+            <button onclick="searchProducts()">
+                🔍
+            </button>
+
+        </div>
+
+        <button
+            class="theme-btn"
+            onclick="toggleDarkMode()"
+            title="Toggle dark mode"
+        >
+            🌙
+        </button>
+
+        <a href="cart.html" class="cart-link">
+            🛒 Cart
+            <span id="cartCount">0</span>
+        </a>
+
+    </header>
+
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+
+        <button onclick="showWishlist()" class="nav-wishlist">
+            ❤️ Wishlist
+            <span id="wishlistCount">0</span>
+        </button>
+
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <span class="hero-small">
+                WELCOME TO SHOPEASY
+            </span>
+
+            <h1>
+                Everything You Need,
+                <br>
+                All In One Place
+            </h1>
+
+            <p>
+                Discover amazing products at great prices.
+            </p>
+
+            <a href="#products" class="shop-btn">
+                Shop Now →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="features">
+
+        <div class="feature">
+            <span>🚚</span>
+            <h3>Fast Delivery</h3>
+            <p>Quick and reliable delivery</p>
+        </div>
+
+        <div class="feature">
+            <span>🔒</span>
+            <h3>Secure Payment</h3>
+            <p>Your payment is protected</p>
+        </div>
+
+        <div class="feature">
+            <span>↩️</span>
+            <h3>Easy Returns</h3>
+            <p>Simple return process</p>
+        </div>
+
+        <div class="feature">
+            <span>⭐</span>
+            <h3>Quality Products</h3>
+            <p>Trusted products and brands</p>
+        </div>
+
+    </section>
+
+
+    <!-- CATEGORY -->
+    <section class="category-section">
+
+        <h2>Shop by Category</h2>
+
+        <div class="categories">
+
+            <button onclick="filterCategory('All')">
+                All
+            </button>
+
+            <button onclick="filterCategory('Mobile')">
+                📱 Mobile
+            </button>
+
+            <button onclick="filterCategory('Computers')">
+                💻 Computers
+            </button>
+
+            <button onclick="filterCategory('Electronics')">
+                🎧 Electronics
+            </button>
+
+            <button onclick="filterCategory('Fashion')">
+                👕 Fashion
+            </button>
+
+            <button onclick="filterCategory('Beauty')">
+                💄 Beauty
+            </button>
+
+            <button onclick="filterCategory('Home')">
+                🏠 Home
+            </button>
+
+            <button onclick="filterCategory('Sports')">
+                ⚽ Sports
+            </button>
+
+            <button onclick="filterCategory('Travel')">
+                ✈️ Travel
+            </button>
+
+            <button onclick="filterCategory('Books')">
+                📚 Books
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+    <section class="products-section" id="products">
+
+        <div class="products-heading">
+
+            <div>
+
+                <h2>Featured Products</h2>
+
+                <p id="productCountText">
+                    Loading products...
+                </p>
+
+            </div>
+
+
+            <div class="sort-box">
+
+                <label for="sortSelect">
+                    Sort:
+                </label>
+
+                <select
+                    id="sortSelect"
+                    onchange="sortProducts()"
+                >
+
+                    <option value="default">
+                        Recommended
+                    </option>
+
+                    <option value="price-low">
+                        Price: Low to High
+                    </option>
+
+                    <option value="price-high">
+                        Price: High to Low
+                    </option>
+
+                    <option value="rating">
+                        Highest Rated
+                    </option>
+
+                    <option value="name">
+                        Name A-Z
+                    </option>
+
+                    <option value="discount">
+                        Biggest Discount
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="productGrid"
+            class="product-grid"
+        >
+
+            <div class="loading">
+                <div class="loader"></div>
+                <p>Loading real products...</p>
+            </div>
+
+        </div>
+
+
+        <!-- PAGINATION -->
+
+        <div
+            id="pagination"
+            class="pagination"
+        >
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCT MODAL -->
+    <div
+        id="productModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <button
+                class="close"
+                onclick="closeModal()"
+            >
+                ×
+            </button>
+
+
+            <div class="modal-layout">
+
+                <div class="modal-images">
+
+                    <img
+                        id="modalImage"
+                        src=""
+                        alt="Product"
+                    >
+
+                    <div
+                        id="modalThumbnails"
+                        class="modal-thumbnails"
+                    >
+                    </div>
+
+                </div>
+
+
+                <div class="modal-details">
+
+                    <span
+                        id="modalCategory"
+                        class="modal-category"
+                    >
+                    </span>
+
+
+                    <h2 id="modalName">
+                    </h2>
+
+
+                    <div
+                        id="modalRating"
+                        class="rating"
+                    >
+                    </div>
+
+
+                    <p
+                        id="modalDescription"
+                        class="modal-description"
+                    >
+                    </p>
+
+
+                    <div
+                        id="modalBrand"
+                        class="brand"
+                    >
+                    </div>
+
+
+                    <div class="modal-price">
+
+                        <span
+                            id="modalPrice"
+                            class="price"
+                        >
+                        </span>
+
+                        <span
+                            id="modalOriginalPrice"
+                            class="original-price"
+                        >
+                        </span>
+
+                        <span
+                            id="modalDiscount"
+                            class="discount"
+                        >
+                        </span>
+
+                    </div>
+
+
+                    <p
+                        id="modalStock"
+                        class="stock"
+                    >
+                    </p>
+
+
+                    <button
+                        id="modalAddButton"
+                        class="add-cart-btn large-btn"
+                    >
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- WISHLIST MODAL -->
+    <div
+        id="wishlistModal"
+        class="modal"
+    >
+
+        <div class="wishlist-content">
+
+            <button
+                class="close"
+                onclick="closeWishlist()"
+            >
+                ×
+            </button>
+
+            <h2>
+                ❤️ My Wishlist
+            </h2>
+
+            <div id="wishlistContainer">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ABOUT -->
+    <section
+        class="about-section"
+        id="about"
+    >
+
+        <h2>About ShopEasy</h2>
+
+        <p>
+            ShopEasy is an advanced mini e-commerce website
+            created using HTML, CSS and JavaScript.
+        </p>
+
+        <p>
+            It includes real online product data, product images,
+            ratings, discounts, wishlist, search, sorting and
+            shopping cart functionality.
+        </p>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section
+        class="contact-section"
+        id="contact"
+    >
+
+        <h2>Contact Us</h2>
+
+        <div class="contact-grid">
+
+            <div>
+                <span>📧</span>
+                <h3>Email</h3>
+                <p>support@shopeasy.com</p>
+            </div>
+
+            <div>
+                <span>📞</span>
+                <h3>Phone</h3>
+                <p>+91 98765 43210</p>
+            </div>
+
+            <div>
+                <span>📍</span>
+                <h3>Location</h3>
+                <p>India</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-logo">
+            ShopEasy
+        </div>
+
+        <p>
+            Your trusted mini online shopping store.
+        </p>
+
+        <p>
+            © 2026 ShopEasy. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- SCRIPTS -->
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
